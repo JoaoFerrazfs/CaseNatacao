@@ -14,9 +14,8 @@
 		<fieldset> 
 			<legend style="text-align: left;" >Busca Catergorias
 				<input type="text" name="nome" placeholder="nome">
-				<input type="text" name="idade" placeholder="idade">		
-				
-				<input type="submit" name="postar" value="submeter" >
+				<input type="text" name="idade" placeholder="idade">				
+				<input type="submit" name="postar" value="submeter">
 			</legend>
 		<fieldset>
 
