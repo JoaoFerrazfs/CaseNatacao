@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,15 +13,51 @@
 </head>
 
 <body>
-	<form class="natacao" method="post" action="script.php" style="text-align: center; width: 800px; margin:250px 800px; background-color:whitesmoke ;" >
+	<form class="natacao" method="post" action="script.php" style="width: 100px ; margin:250px 200px; " >
+				<fieldset>
+	
+				<?php  
+					$mensagemDeErro = isset($_SESSION['mensagem-de-erro-nome']) ? $_SESSION['mensagem-de-erro-nome'] :'';
+					if (!empty($mensagemDeErro)) 
+					{
+					echo $mensagemDeErro;
+					}
 
-		<fieldset> 
-			<legend style="text-align: left;" >Busca Catergorias
-				<input type="text" name="nome" placeholder="nome">
-				<input type="text" name="idade" placeholder="idade">				
-				<input type="submit" name="postar" value="submeter">
-			</legend>
-		<fieldset>
+				?>				
+				<input type="text" name="nome" placeholder="nome" style="display: block;">
+
+
+
+				<?php  
+					$mensagemDeErro = isset($_SESSION['mensagem-de-erro-idade']) ? $_SESSION['mensagem-de-erro-idade'] :'';
+					if (!empty($mensagemDeErro)) 
+					{
+					echo $mensagemDeErro;
+					}
+
+				?>			
+
+				<input type="text" name="idade" placeholder="idade" style="display: block;">
+
+
+				
+					
+				<input type="submit" name="postar" value="submeter" style="display: block;">
+
+
+
+				
+		</fieldset>
+
+		<?php
+        					$mensagemDeSucesso = isset($_SESSION['mensagem-de-sucesso']) ? $_SESSION['mensagem-de-sucesso'] :'';
+        					if (!empty($mensagemDeErro))
+        					{
+        					echo $mensagemDeSucesso;
+        					}
+
+        				?>
+		
 
 	</form>
 

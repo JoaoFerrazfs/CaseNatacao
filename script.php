@@ -1,6 +1,7 @@
 
 <?php
 
+session_start();
 $categorias = [];
 
 $categorias[] ='Infantil';
@@ -14,47 +15,42 @@ $idade = $_POST['idade'];
 
 if(empty($nome))
 {
-	echo 'O nome não pode ser Vazio';
+	$_SESSION['mensagem-de-erro-nome'] = 'Informe um nome válido';
+	header('Location: index.php');
 	return;
 }
 
-if(strlen($nome) < 3)
+
+else if(strlen($nome) < 3)
+{	
+	$_SESSION['mensagem-de-erro-nome'] = 'O nome deve ter pelo menos 3 caracteres';
+	header('Location: index.php');
+	return;
+}
+
+else if(strlen($nome) >40) 
 {
-	echo 'O nome deve conter mais de 3 Caracteres';
+	$_SESSION['mensagem-de-erro-nome'] = 'O nome deve ter pelo máximo 40 caracteres';
+	header('Location: index.php');
 	return;
 }
 
-if (strlen($nome) >40) 
+else if(!is_numeric($idade))
 {
-	echo 'O nome é muito extenso';
-	return;
-}
-
-if(!is_numeric($idade))
-{
-	echo "Digite um numero";
+	$_SESSION['mensagem-de-erro-idade'] = 'Digite um numero';
+	header('Location: index.php');
 	return;
 }
 
 
 
- if (empty($nome && $idade))
-
- {
- 		echo"Digite as informações";
- }
- else{
-
- if (isset($_POST['postar'])){
-    
- 
-
-if ($idade <=6 && $idade <=12)
+if($idade <=6 && $idade <=12)
 {
 	for($i = 0; $i <=3; $i++)
 	{
-		if ($categorias[$i] == 'Infantil')
-			echo "O nadador " .$nome. " compete na categoria infantil";	
+		$_SESSION['mensagem-de-sucesso'] = "O nadador ".$nome. " compete na categoria Infantil";
+        	header('Location: index.php');
+        	return;
 		
 	}
 }
@@ -63,8 +59,9 @@ else if ($idade >=12 && $idade <18)
 {
 	for($i = 0; $i <=3; $i++)
 	{
-		if ($categorias[$i] == 'Adolecentes')
-			echo "O nadador " .$nome. " compete na categoria Adolecentes";	
+		$_SESSION['mensagem-de-sucesso'] = "O nadador ".$nome. " compete na categoria Adolecente";
+                	header('Location: index.php');
+                	return;
 		
 	}
 }
@@ -72,14 +69,15 @@ else
 {
 	for($i = 0; $i <=3; $i++)
 	{
-		if ($categorias[$i] == 'Adultos')
-			echo "O nadador " .$nome. " compete na categoria Adulto";	
+		$_SESSION['mensagem-de-sucesso'] = "O nadador ".$nome. " compete na categoria Adulto";
+                        	header('Location: index.php');
+                        	return;
 		
 	}
 }
 
-}
 
-}
+
+
 
 ?>
